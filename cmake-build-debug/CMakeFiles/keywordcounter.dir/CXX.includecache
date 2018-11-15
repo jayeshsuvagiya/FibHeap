@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/jayesh/ClionProjects/FibHeap/fibheap.h
+string
+C:/Users/jayesh/ClionProjects/FibHeap/string
+
+C:/Users/jayesh/ClionProjects/FibHeap/main.cpp
+iostream
+-
+fstream
+-
+sstream
+-
+unordered_map
+-
+list
+-
+fibheap.h
+C:/Users/jayesh/ClionProjects/FibHeap/fibheap.h
+

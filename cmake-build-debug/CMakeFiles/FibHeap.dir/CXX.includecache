@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/jayesh/ClionProjects/FibHeap/fibheap.h
+
+C:/Users/jayesh/ClionProjects/FibHeap/main.cpp
+iostream
+-
+fstream
+-
+fibheap.h
+C:/Users/jayesh/ClionProjects/FibHeap/fibheap.h
+
