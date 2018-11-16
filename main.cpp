@@ -17,6 +17,7 @@ void printdata(node* a){
     std::cout<<"\n";
 }
 int main(int argc, char** argv) {
+    //initialize variables
     fibheap fibh{};
     unordered_map<string, node*> keys;
     ifstream  input;
@@ -24,72 +25,80 @@ int main(int argc, char** argv) {
     fstream output;
     string out;
     output.open("output_file.txt", ios::in | ios::out | ios::trunc );
+
     if(input.good()){
         string line;
-        while ( getline (input,line) )
+        while ( getline (input,line) ) //read input lines
         {
-            if(line[0]=='$'){
+            if(line[0]=='$'){ //check for $ and process
+
+                //split keyword and count
                 unsigned int p = line.find(' ');
                 string *keyword=new string(line.substr(1,p-1));
-               // keyword= ;
                 std::istringstream ss(line.substr(p));
                 int count;
                 ss>>count;
-                if(debug)
-                cout<<" Keyword - "<<*keyword<<" length = "<<(*keyword).length()<<" count - "<<count<<"\n";
-                if(keys.find(*keyword) == keys.end()){
+
+                if(debug){
+                    cout<<" Keyword - "<<*keyword<<" length = "<<(*keyword).length()<<" count - "<<count<<"\n";
+                }
+
+                if(keys.find(*keyword) == keys.end()){ //if keyword doesnt exist insert
                     node *n=new node(count, keyword);
                     keys[*keyword]=n;//insert in degree table
                     fibh.insert(n);
-                } else {
+                } else { //else increase count
                     fibh.increasekey(keys[*keyword],count);
                 }
-            }else if(line=="stop"){
-                //cout<<"STOP RECIEVED - "<<line<<"\n";
+            }else if(line=="stop"){ //check for stop and exit
                 input.close();
-                out.pop_back();
+                out.pop_back(); //remove extra line at the end of file
                 output<<out;
                 output.close();
                 return 0;
-            } else{
+            } else{ //else query
+
                 std::istringstream ss(line);
                 int c;
                 ss>>c;
                 list<node*> toplist;
+
                 if(debug){
                     cout<<"QUERY - "<<c<<"\n";
                     printdata(fibh.getmax());
                 }
-               // output<<"\n";
-                while(c--){
+
+                while(c--){ //loop till query count
+
                     if(debug){
                         cout<<"BEFORE EXTRACT MAX - "<<c<<"\n";
                         printdata(fibh.getmax());
                     }
+
+                    //remove max
                     node *n = fibh.extractmax();
+
+                    //append it to ouput
                     if(n != nullptr){
-                       // output<<*(n->keyword);
                         out.append(*(n->keyword));
                         if(c!=0)
                             out.append(",");
-                       // output<<",";
                     }
 
                     if(debug){
                         cout<<"After EXTRACT MAX - "<<c<<"\n";
                         printdata(fibh.getmax());
                     }
+
                     toplist.push_back(n);
                 }
                 out.append("\n");
-                //cout<<"\n";
+
                 for(node* n:toplist){
-                  //  cout<<"\t"<<*(n->keyword)<<" - "<<(n->count)<<",";
-                   // output<<*(n->keyword)<<",";
+                    //insert all the max nodes again in to the heap
                     fibh.insert(n);
                 }
 
-                //cout<<"\n";
                 if(debug){
                     cout<<"\n";
                     printdata(fibh.getmax());

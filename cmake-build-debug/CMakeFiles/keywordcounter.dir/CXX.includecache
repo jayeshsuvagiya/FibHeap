@@ -6,6 +6,16 @@
 
 #IncludeRegexTransform: 
 
+C:/Users/jayesh/ClionProjects/FibHeap/fibheap.cpp
+iostream
+-
+unordered_map
+-
+fibheap.h
+C:/Users/jayesh/ClionProjects/FibHeap/fibheap.h
+list
+-
+
 C:/Users/jayesh/ClionProjects/FibHeap/fibheap.h
 string
 C:/Users/jayesh/ClionProjects/FibHeap/string
